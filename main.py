@@ -8,6 +8,8 @@ app = Flask(__name__)
 @app.route('/<int:date_id>')
 @app.route('/')
 def index(date_id=0):
+    if date_id > 8:
+        return redirect(url_for("index"))
     dates = requests.get(url="https://olimp.miet.ru/ppo_it_final/date", headers={'X-Auth-Token': 'ppo_10_10096'})
     dates = dates.json()
     date = dates['message'][date_id].split('-')
