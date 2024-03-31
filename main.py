@@ -17,10 +17,11 @@ def index():
     windows_for_flat = new_req["message"]['windows_for_flat']['data']
     windows_numbers = []
     floors_count = len(new_req["message"]['windows']['data'].keys())
-    rooms_count = new_req['message']['rooms_count']['data']
+    rooms_count = new_req['message']['flats_count']['data']
 
     k = 1
     counter = 0
+    rooms_number = []
     for i in range(floors_count):
         floor = []
         o = 0
@@ -32,12 +33,15 @@ def index():
             flag = 0
             for p in range(len(floor[l])):
                 floor[l][p] = (floor[l][p], state[o])
+                if state[o] and not flag:
+                    flag = 1
+                    rooms_number.append(floor[l][p][0])
+                    counter += 1
                 o += 1
         windows_numbers.append(floor)
 
-
-    return render_template('index.html', request=new_req, windows=windows_numbers, windows_for_room=" ".join(windows_for_flat),
-                           rooms_count=rooms_count)
+    return render_template('index.html', request=new_req, windows=windows_numbers, windows_for_room=" ".join(list(map(str, windows_for_flat))),
+                           rooms_count=rooms_count, active_rooms_counter=counter, active_rooms=rooms_number)
 
 
 if __name__ == '__main__':
