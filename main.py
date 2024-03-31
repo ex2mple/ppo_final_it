@@ -1,13 +1,13 @@
 from flask import *
+import requests
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-
-@app.route("/https://olimp.miet.ru/ppo_it_final")
+    request = requests.request("https://olimp.miet.ru/ppo_it_final?X-Auth-Token=ppo_10_10096", method='GET')
+    return render_template('index.html', request=request)
 
 
 
