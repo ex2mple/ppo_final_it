@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="/static/index.css">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-    <h1></h1>
+    <div class="wrapper">
+        <div class="inner-wrapper">
+            <div class="table-rooms">
+            {% for floor in windows %}
+            <div class="floor" id="floor_{{loop.index}}">
+                {% for window_row in floor %}
+                    <div class="window-row" id="window_row_{{loop.index}}">
+                        {% for window in window_row %}
+                            <div class="window {{ 'active' if window[1] }}" id="window_{{loop.index}}">
+                                {{ window[0] }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+            </div>
+            <div class="central-column">
+                <div class="input-data">
+                    <h2>Входные данные:</h2>
+                </div>
+                <div class="answer">
+                    <h2>Ответ:</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </body>
 </html>
