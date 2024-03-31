@@ -7,6 +7,12 @@
 </head>
 <body>
     <div class="wrapper">
+        <div class="date"><h1>{{today}}</h1></div>
+        <div class="buttons">
+            {% for date in all_dates %}
+                <a href="/{{loop.index - 1}}"><h3>{{date}}</h3></a>
+            {% endfor %}
+        </div>
         <div class="inner-wrapper">
             <div class="table-rooms">
             {% for floor in windows %}
@@ -35,19 +41,19 @@
                 <div class="windows-amount row">
                     <div>
                         <p>Количество комнат на этаже:</p>
-                        <p>3</p>
+                        <p>{{rooms_count}}</p>
                     </div>
                     <div>
-                        <p>Окна на этаже:</p><span>3 2 1</span>
+                        <p>Окна на этаже:</p><span>{{windows_for_room}}</span>
                     </div>
                 </div>
                 <div class="window-on-floor row">
                     <div>
                         <p>Количество комнат:</p>
-                        <p>8</p>
+                        <p>{{active_rooms_counter}}</p>
                     </div>
                     <div>
-                        <p>Номера комнат:</p><span>1, 1, 1, 1, 1</span>
+                        <p>Номера комнат:</p><span>{{active_rooms}}</span>
                     </div>
                 </div>
             </div>
